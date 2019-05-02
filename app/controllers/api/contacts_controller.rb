@@ -1,7 +1,7 @@
 class Api::ContactsController < ApplicationController
   def contacts_action   
     @contact = Contact.first
-
+    
     render 'contacts_app_view.json.jbuilder'
   end 
 
