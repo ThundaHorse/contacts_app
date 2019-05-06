@@ -28,6 +28,13 @@ class Api::ContactsController < ApplicationController
   @contact.last_name = params[:id] || @contact.last_name 
   @contact.email = params[:id] || @contact.email 
   @contact.phone_number = params[:id] || @contact.phone_number 
+ end
+
+ def destroy 
+  @contact = Contact.find(params[:id])
+  @contact.destroy
+  render json: {message: "Destroyed"} 
  end 
+
 
 end
