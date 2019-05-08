@@ -1,11 +1,17 @@
-contact = Contact.new(first_namae: "Haemi", last_name: "Choi", email: "hemihemihemi@hemi.com", phone_number: "123-456-7890")
-contact.save 
+first_name = Faker::Name.first_name 
+last_name = Faker::Name.last_name
+something_for_bio = [Faker::ChuckNorris.fact, Faker::Hacker.say_something_smart]
 
-contact = Contact.new(first_namae: "Heemer", last_name: "Choi", email: "hemihemihemi@hemi.com", phone_number: "123-456-7890")
-contact.save 
+1000.times do 
+  contact = Contact.new(
+                        first_name: first_name, 
+                        middle_name: Faker::Name.middle_name,
+                        last_name: last_name,
+                        email: Faker::Internet.free_email("#{first_name}.#{last_name}"),
+                        phone_number: Faker::PhoneNumber.cell_phone,
+                        bio: something_for_bio.sample 
+                      )
+contact.save
+end 
 
-contact = Contact.new(first_namae: "Heemsur", last_name: "Choi", email: "hemihemihemi@hemi.com", phone_number: "123-456-7890")
-contact.save 
 
-contact = Contact.new(first_namae: "Heemee", last_name: "Choi", email: "hemihemihemi@hemi.com", phone_number: "123-456-7890")
-contact.save 
