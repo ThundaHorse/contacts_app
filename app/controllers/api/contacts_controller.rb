@@ -1,5 +1,6 @@
 class Api::ContactsController < ApplicationController
  def index  
+  
   @contacts = Contact.all 
 
   specific_first_name = params[:first_name] 
@@ -10,6 +11,7 @@ class Api::ContactsController < ApplicationController
 
   last_name_search = params[:last_name] 
   if last_name_search 
+    
     @contacts = @contacts.where("last_name iLIKE ?", "%#{last_name_search}%")
   end 
 

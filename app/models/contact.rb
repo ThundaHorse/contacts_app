@@ -5,6 +5,7 @@ class Contact < ApplicationRecord
   validates :email, uniqueness: true
   validates :email, format: { with: /\A\w+[@]\w{3,}[.]\w{2,}\z/, message: "must be a valid email" } 
 
+  belongs_to :user
 
   def friendly_updated_at 
     updated_at.strftime("%A, %d %b %Y %l:%M %p")
