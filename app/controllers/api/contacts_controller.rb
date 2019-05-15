@@ -1,18 +1,20 @@
 class Api::ContactsController < ApplicationController
  def index  
-  
-  @contacts = Contact.all 
 
-  specific_first_name = params[:first_name] 
+  if current_user 
+    @contacts = current_user.contacts
 
-  if specific_first_name 
-    @contacts = @contacts.where("first_name iLIKE ?", "%#{specific_first_name}%")
-  end 
+    specific_first_name = params[:first_name] 
 
-  last_name_search = params[:last_name] 
-  if last_name_search 
-    
-    @contacts = @contacts.where("last_name iLIKE ?", "%#{last_name_search}%")
+    if specific_first_name 
+      @contacts = @contacts.where("first_name iLIKE ?", "%#{specific_first_name}%")
+    end 
+
+    last_name_search = params[:last_name] 
+    if last_name_search 
+      
+      @contacts = @contacts.where("last_name iLIKE ?", "%#{last_name_search}%")
+    end 
   end 
 
   render 'index.json.jbuilder'
@@ -25,7 +27,8 @@ class Api::ContactsController < ApplicationController
                             last_name: params[:last_name], 
                             email: params[:email],
                             bio: params[:bio],
-                            phone_number: params[:phone_number]
+                            phone_number: params[:phone_number],
+                            user_id: current_user.id
                           )
     if @contact.save 
       render "show.json.jbuilder"

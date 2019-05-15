@@ -11,3 +11,5 @@ json.formatted do
   json.full_name contact.full_name
   # json.nihonjin_number contact.nihonjin_number
 end 
+
+json.user_id contact.user_id
