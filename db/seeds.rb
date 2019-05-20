@@ -1,17 +1,14 @@
-# 500.times do 
-#   first_name = Faker::Name.first_name
-#   last_name = Faker::Name.last_name
-#   ids = [1,2]
+Group.create(name: "FamBam")
+Group.create(name: "Eating")
+Group.create(name: "Soccer")
 
-#   contact = Contact.new(
-#                         first_name: first_name,
-#                         middle_name: Faker::Name.middle_name,
-#                         last_name: last_name,
-#                         email: Faker::Internet.free_email("#{first_name}.#{last_name}"),
-#                         phone_number: Faker::PhoneNumber.phone_number,
-#                         bio: Faker::Hacker.say_something_smart,
-#                         user_id: ids.sample
-#                         )
-#   contact.save
-# end
+groups = Group.all
+contacts = Contact.all 
 
+contacts.each do |contact| 
+  selected_groups = groups.sample(rand(2..4)) 
+
+  selected_groups.each do |group| 
+    ContactGroup.create(contact_id: contact.id, group_id: groups.sample.id) 
+  end 
+end 
