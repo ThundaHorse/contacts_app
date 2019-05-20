@@ -1,1 +1,1 @@
-json.partial! @contact, partial: "contact", as: :contact
+json.partial! @contact, partial: "contact", as: :contacts
